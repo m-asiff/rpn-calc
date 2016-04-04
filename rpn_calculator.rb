@@ -8,7 +8,8 @@ class RPNCalculator
 
   def input(arg)
     if operators.include?(arg)
-
+      # There must be at least two operands before doing any
+      # evaluation
       if stack.size >= 2
         stack.push arg
         evaluate
@@ -36,6 +37,8 @@ private
 
     raise 'Invalid operation' if !operand1 || !operand2
 
+    # The eval is safe here as only the supported operators are pushed in stack and also
+    # the operands are always ensured to be numbers
     val = eval "#{operand1}#{operator}#{operand2}"
     stack.push val
 
